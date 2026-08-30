@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PEHEN STUDIOS — PEHEN VERSE</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#03050a;
+    color:#fff;
+    font-family:'Rajdhani',sans-serif;
+    overflow-x:hidden;
+}
+
+/* ===== BACKGROUND ===== */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+        radial-gradient(circle at 15% 20%,rgba(0,140,255,.18),transparent 28%),
+        radial-gradient(circle at 85% 70%,rgba(255,210,0,.13),transparent 30%),
+        radial-gradient(circle at 50% 100%,rgba(0,90,255,.12),transparent 35%);
+    pointer-events:none;
+    z-index:-3;
+}
+
+.grid{
+    position:fixed;
+    inset:0;
+    background-image:
+        linear-gradient(rgba(0,140,255,.035) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(0,140,255,.035) 1px,transparent 1px);
+    background-size:55px 55px;
+    mask-image:linear-gradient(to bottom,transparent,black 20%,black 80%,transparent);
+    pointer-events:none;
+    z-index:-2;
+}
+
+#particles{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-1;
+}
+
+/* ===== NAVBAR ===== */
+
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:75px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 7%;
+    background:rgba(3,5,10,.72);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid rgba(0,174,255,.15);
+    z-index:1000;
+}
+
+.logo{
+    font-family:'Orbitron',sans-serif;
+    font-size:22px;
+    font-weight:900;
+    letter-spacing:3px;
+}
+
+.logo span{
+    color:#ffd000;
+}
+
+.nav-links{
+    display:flex;
+    gap:28px;
+    list-style:none;
+}
+
+.nav-links a{
+    color:#aaa;
+    text-decoration:none;
+    font-size:15px;
+    font-weight:600;
+    letter-spacing:1.5px;
+    transition:.3s;
+    cursor:pointer;
+}
+
+.nav-links a:hover{
+    color:#ffd000;
+    text-shadow:0 0 15px rgba(255,208,0,.6);
+}
+
+.menu{
+    display:none;
+    font-size:28px;
+    cursor:pointer;
+    color:#ffd000;
+}
+
+/* ===== HERO ===== */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    position:relative;
+    padding:120px 20px 80px;
+}
+
+.hero-content{
+    max-width:1000px;
+}
+
+.small-title{
+    color:#ffd000;
+    font-family:'Orbitron',sans-serif;
+    letter-spacing:7px;
+    font-size:14px;
+    margin-bottom:25px;
+    animation:fadeUp 1s ease;
+}
+
+.hero h1{
+    font-family:'Orbitron',sans-serif;
+    font-size:clamp(55px,11vw,145px);
+    line-height:.9;
+    font-weight:900;
+    letter-spacing:-5px;
+    background:linear-gradient(110deg,#fff 10%,#55baff 42%,#ffd000 70%,#fff);
+    background-size:300%;
+    -webkit-background-clip:text;
+    color:transparent;
+    animation:gradientMove 5s infinite alternate,fadeUp 1s ease;
+}
+
+.hero h2{
+    margin-top:25px;
+    font-family:'Orbitron',sans-serif;
+    font-size:clamp(25px,5vw,60px);
+    color:#ffd000;
+    letter-spacing:8px;
+    text-shadow:0 0 30px rgba(255,208,0,.25);
+}
+
+.hero p{
+    max-width:650px;
+    margin:30px auto;
+    color:#9ca8b8;
+    font-size:19px;
+    line-height:1.6;
+}
+
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-top:35px;
+}
+
+.btn{
+    border:1px solid #ffd000;
+    padding:15px 28px;
+    border-radius:6px;
+    text-decoration:none;
+    font-weight:700;
+    letter-spacing:2px;
+    color:#ffd000;
+    transition:.3s;
+    cursor:pointer;
+    background:rgba(255,208,0,.04);
+}
+
+.btn:hover{
+    background:#ffd000;
+    color:#05070b;
+    box-shadow:0 0 35px rgba(255,208,0,.35);
+    transform:translateY(-3px);
+}
+
+.btn.blue{
+    border-color:#009dff;
+    color:#42b9ff;
+}
+
+.btn.blue:hover{
+    background:#009dff;
+    color:white;
+    box-shadow:0 0 35px rgba(0,157,255,.35);
+}
+
+/* ===== SECTIONS ===== */
+
+section{
+    padding:110px 7%;
+    position:relative;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.section-title .tag{
+    color:#009dff;
+    font-family:'Orbitron',sans-serif;
+    letter-spacing:4px;
+    font-size:12px;
+}
+
+.section-title h2{
+    font-family:'Orbitron',sans-serif;
+    font-size:clamp(32px,5vw,58px);
+    margin-top:10px;
+}
+
+.section-title h2 span{
+    color:#ffd000;
+}
+
+/* ===== VERSE ===== */
+
+.verse{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+}
+
+.verse-box{
+    border:1px solid rgba(0,157,255,.25);
+    background:linear-gradient(145deg,rgba(0,157,255,.07),rgba(255,208,0,.025));
+    padding:45px;
+    border-radius:18px;
+    box-shadow:0 0 70px rgba(0,100,255,.06);
+}
+
+.verse-box h3{
+    font-family:'Orbitron',sans-serif;
+    color:#ffd000;
+    font-size:28px;
+    margin-bottom:20px;
+}
+
+.verse-box p{
+    color:#aeb8c5;
+    line-height:1.8;
+    font-size:18px;
+}
+
+.symbol{
+    height:380px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+}
+
+.symbol-ring{
+    width:280px;
+    height:280px;
+    border:1px solid #009dff;
+    border-radius:50%;
+    box-shadow:0 0 40px rgba(0,157,255,.18),inset 0 0 40px rgba(0,157,255,.08);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    animation:spin 20s linear infinite;
+}
+
+.symbol-ring::before{
+    content:"";
+    width:190px;
+    height:190px;
+    border:2px solid #ffd000;
+    border-radius:50%;
+    box-shadow:0 0 30px rgba(255,208,0,.18);
+}
+
+.symbol-text{
+    position:absolute;
+    font-family:'Orbitron',sans-serif;
+    font-size:38px;
+    font-weight:900;
+    color:#fff;
+    text-shadow:0 0 25px #009dff;
+}
+
+/* ===== CHARACTERS ===== */
+
+.characters{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:22px;
+}
+
+.character{
+    min-height:330px;
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:16px;
+    overflow:hidden;
+    position:relative;
+    background:linear-gradient(150deg,#080d15,#05070c);
+    transition:.4s;
+    cursor:pointer;
+}
+
+.character:hover{
+    transform:translateY(-10px);
+    border-color:#009dff;
+    box-shadow:0 20px 60px rgba(0,120,255,.15);
+}
+
+.character-image{
+    height:190px;
+    background:
+        radial-gradient(circle at 50% 35%,rgba(0,157,255,.35),transparent 25%),
+        linear-gradient(145deg,#071426,#10151d);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+}
+
+.character-image::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(transparent 55%,#080d15);
+}
+
+.avatar{
+    width:105px;
+    height:105px;
+    border-radius:50%;
+    border:2px solid #ffd000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Orbitron',sans-serif;
+    font-size:27px;
+    font-weight:900;
+    color:#ffd000;
+    box-shadow:0 0 35px rgba(255,208,0,.2);
+}
+
+.character-info{
+    padding:20px;
+}
+
+.character-info h3{
+    font-family:'Orbitron',sans-serif;
+    font-size:19px;
+}
+
+.character-info .role{
+    color:#009dff;
+    font-size:13px;
+    letter-spacing:2px;
+    margin:6px 0;
+}
+
+.character-info p{
+    color:#8894a4;
+    line-height:1.5;
+}
+
+/* ===== PROJECTS ===== */
+
+.projects{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:25px;
+}
+
+.project{
+    min-height:280px;
+    border-radius:18px;
+    padding:35px;
+    position:relative;
+    overflow:hidden;
+    border:1px solid rgba(255,208,0,.18);
+    background:linear-gradient(140deg,rgba(255,208,0,.07),rgba(0,157,255,.04));
+    transition:.35s;
+}
+
+.project:hover{
+    transform:translateY(-7px);
+    border-color:#ffd000;
+    box-shadow:0 20px 50px rgba(255,208,0,.1);
+}
+
+.project-number{
+    position:absolute;
+    right:20px;
+    top:15px;
+    font-family:'Orbitron',sans-serif;
+    font-size:65px;
+    color:rgba(255,255,255,.035);
+    font-weight:900;
+}
+
+.project h3{
+    color:#ffd000;
+    font-family:'Orbitron',sans-serif;
+    font-size:28px;
+    margin-bottom:18px;
+}
+
+.project p{
+    color:#a4afbd;
+    line-height:1.7;
+}
+
+/* ===== LORE ===== */
+
+.lore-list{
+    max-width:900px;
+    margin:auto;
+}
+
+.lore-item{
+    display:grid;
+    grid-template-columns:100px 1fr;
+    gap:25px;
+    margin-bottom:25px;
+}
+
+.lore-date{
+    color:#ffd000;
+    font-family:'Orbitron',sans-serif;
+    font-size:14px;
+    padding-top:20px;
+}
+
+.lore-content{
+    border-left:2px solid #009dff;
+    padding:18px 25px;
+    background:rgba(0,157,255,.035);
+    border-radius:0 12px 12px 0;
+}
+
+.lore-content h3{
+    font-family:'Orbitron',sans-serif;
+    margin-bottom:8px;
+}
+
+.lore-content p{
+    color:#8995a5;
+    line-height:1.6;
+}
+
+/* ===== DEBATE ===== */
+
+.debate{
+    max-width:850px;
+    margin:auto;
+    text-align:center;
+    padding:60px 30px;
+    border:1px solid rgba(0,157,255,.25);
+    border-radius:20px;
+    background:radial-gradient(circle at center,rgba(0,157,255,.08),transparent 65%);
+}
+
+.debate h2{
+    font-family:'Orbitron',sans-serif;
+    font-size:35px;
+    margin-bottom:20px;
+}
+
+.debate h2 span{
+    color:#ffd000;
+}
+
+.debate p{
+    color:#9ba7b6;
+    line-height:1.7;
+    font-size:18px;
+}
+
+/* ===== FOOTER ===== */
+
+footer{
+    padding:60px 7% 35px;
+    border-top:1px solid rgba(255,255,255,.08);
+    text-align:center;
+}
+
+.footer-logo{
+    font-family:'Orbitron',sans-serif;
+    font-size:30px;
+    font-weight:900;
+}
+
+.footer-logo span{
+    color:#ffd000;
+}
+
+footer p{
+    color:#626d7c;
+    margin-top:15px;
+}
+
+.creator{
+    margin-top:25px;
+    color:#009dff;
+    letter-spacing:2px;
+}
+
+/* ===== MODAL ===== */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.8);
+    backdrop-filter:blur(15px);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:2000;
+    padding:20px;
+}
+
+.modal.active{
+    display:flex;
+}
+
+.modal-box{
+    max-width:650px;
+    width:100%;
+    background:#080d15;
+    border:1px solid #009dff;
+    border-radius:20px;
+    padding:40px;
+    position:relative;
+    box-shadow:0 0 80px rgba(0,157,255,.18);
+}
+
+.close{
+    position:absolute;
+    right:20px;
+    top:15px;
+    font-size:28px;
+    color:#ffd000;
+    cursor:pointer;
+}
+
+.modal-box h2{
+    font-family:'Orbitron',sans-serif;
+    color:#ffd000;
+    margin-bottom:8px;
+}
+
+.modal-role{
+    color:#009dff;
+    letter-spacing:2px;
+    margin-bottom:20px;
+}
+
+.modal-box p{
+    color:#a8b2c0;
+    line-height:1.8;
+    font-size:17px;
+}
+
+/* ===== ANIMATIONS ===== */
+
+@keyframes gradientMove{
+    0%{background-position:0%}
+    100%{background-position:100%}
+}
+
+@keyframes fadeUp{
+    from{opacity:0;transform:translateY(30px)}
+    to{opacity:1;transform:translateY(0)}
+}
+
+@keyframes spin{
+    to{transform:rotate(360deg)}
+}
+
+@keyframes float{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-12px)}
+}
+
+/* ===== MOBILE ===== */
+
+@media(max-width:800px){
+
+    nav{
+        padding:0 5%;
+    }
+
+    .nav-links{
+        position:absolute;
+        top:75px;
+        left:0;
+        width:100%;
+        flex-direction:column;
+        align-items:center;
+        gap:0;
+        background:rgba(3,5,10,.96);
+        backdrop-filter:blur(20px);
+        max-height:0;
+        overflow:hidden;
+        transition:.4s;
+    }
+
+    .nav-links.open{
+        max-height:400px;
+    }
+
+    .nav-links li{
+        padding:18px;
+    }
+
+    .menu{
+        display:block;
+    }
+
+    .verse{
+        grid-template-columns:1fr;
+    }
+
+    .symbol{
+        height:280px;
+    }
+
+    .symbol-ring{
+        width:210px;
+        height:210px;
+    }
+
+    .symbol-ring::before{
+        width:140px;
+        height:140px;
+    }
+
+    .lore-item{
+        grid-template-columns:1fr;
+        gap:5px;
+    }
+
+    .lore-date{
+        padding-left:20px;
+    }
+
+    section{
+        padding:80px 5%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="grid"></div>
+<canvas id="particles"></canvas>
+
+<!-- NAVIGATION -->
+
+<nav>
+    <div class="logo">PEHEN <span>STUDIOS</span></div>
+
+    <ul class="nav-links" id="navLinks">
+        <li><a onclick="go('home')">HOME</a></li>
+        <li><a onclick="go('verse')">VERSE</a></li>
+        <li><a onclick="go('characters')">CHARACTERS</a></li>
+        <li><a onclick="go('projects')">PROJECTS</a></li>
+        <li><a onclick="go('lore')">LORE</a></li>
+        <li><a onclick="go('debates')">DEBATES</a></li>
+    </ul>
+
+    <div class="menu" onclick="toggleMenu()">☰</div>
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <div class="small-title">WELCOME TO THE UNIVERSE</div>
+
+        <h1>PEHEN</h1>
+
+        <h2>VERSE</h2>
+
+        <p>
+            A universe built from impossible characters,
+            strange worlds, legendary stories and endless possibilities.
+        </p>
+
+        <div class="buttons">
+            <a class="btn" onclick="go('characters')">EXPLORE CHARACTERS</a>
+            <a class="btn blue" onclick="go('verse')">ENTER THE VERSE</a>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- VERSE -->
+
+<section id="verse">
+
+    <div class="section-title">
+        <div class="tag">THE WORLD BEYOND</div>
+        <h2>PEHEN <span>VERSE</span></h2>
+    </div>
+
+    <div class="verse">
+
+        <div class="verse-box">
+
+            <h3>WHAT IS PEHEN VERSE?</h3>
+
+            <p>
+                Pehen-Verse is a fictional universe created by Pehen Studios.
+                A place where heroes, villains, strange beings and completely
+                different realities can exist together.
+                <br><br>
+                Every character has a story.
+                Every world has its own rules.
+                And every story can change the universe forever.
+            </p>
+
+        </div>
+
+        <div class="symbol">
+            <div class="symbol-ring"></div>
+            <div class="symbol-text">P</div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CHARACTERS -->
+
+<section id="characters">
+
+    <div class="section-title">
+        <div class="tag">MEET THE LEGENDS</div>
+        <h2>CHARACTER <span>DATABASE</span></h2>
+    </div>
+
+    <div class="characters">
+
+        <div class="character"
+        onclick="showCharacter(
+        'PARSA PEHEN PRIME',
+        'THE PRIME',
+        'One of the central figures of the Pehen-Verse. Parsa Pehen Prime represents an extremely powerful version of Parsa and stands at the heart of the main universe.'
+        )">
+
+            <div class="character-image">
+                <div class="avatar">PP</div>
+            </div>
+
+            <div class="character-info">
+                <h3>PARSA PEHEN PRIME</h3>
+                <div class="role">THE PRIME</div>
+                <p>A legendary figure at the center of the Pehen-Verse.</p>
+            </div>
+
+        </div>
+
+
+        <div class="character"
+        onclick="showCharacter(
+        'POOYA KACHAL PRIME',
+        'THE HERO',
+        'Pooya Kachal Prime is one of the most important heroic figures of the Pehen-Verse and a major part of its mythology.'
+        )">
+
+            <div class="character-image">
+                <div class="avatar">PK</div>
+            </div>
+
+            <div class="character-info">
+                <h3>POOYA KACHAL PRIME</h3>
+                <div class="role">THE HERO</div>
+                <p>A legendary hero with his own place in the universe.</p>
+            </div>
+
+        </div>
+
+
+        <div class="character"
+        onclick="showCharacter(
+        'PARSA KILLER',
+        'THE KILLER',
+        'A darker incarnation of Parsa. Parsa Killer represents a dangerous and unpredictable side of the Pehen mythos.'
+        )">
+
+            <div class="character-image">
+                <div class="avatar">PK</div>
+            </div>
+
+            <div class="character-info">
+                <h3>PARSA KILLER</h3>
+                <div class="role">THE KILLER</div>
+                <p>A dark and unpredictable version of Parsa.</p>
+            </div>
+
+        </div>
+
+
+        <div class="character"
+        onclick="showCharacter(
+        'POOYA KACHAL',
+        'NEW 35',
+        'Pooya Kachal is a young hero appearing in the New 35 storyline. He is known for his humorous personality and distinctive yellow and blue costume.'
+        )">
+
+            <div class="character-image">
+                <div class="avatar">PK</div>
+            </div>
+
+            <div class="character-info">
+                <h3>POOYA KACHAL</h3>
+                <div class="role">NEW 35</div>
+                <p>The hero of the New 35 storyline.</p>
+            </div>
+
+        </div>
+
+
+        <div class="character"
+        onclick="showCharacter(
+        'MEHDI GAVLIS',
+        'NEW 35',
+        'Mehdi Gavlis is one of the important characters surrounding Pooya Kachal during the events of New 35.'
+        )">
+
+            <div class="character-image">
+                <div class="avatar">MG</div>
+            </div>
+
+            <div class="character-info">
+                <h3>MEHDI GAVLIS</h3>
+                <div class="role">NEW 35</div>
+                <p>A key character in Pooya's story.</p>
+            </div>
+
+        </div>
+
+
+        <div class="character"
+        onclick="showCharacter(
+        'MABEOUDI',
+        'MYSTERY',
+        'Mabeoudi is one of the strange and memorable figures of the Pehen-Verse.'
+        )">
+
+            <div class="character-image">
+                <div class="avatar">M</div>
+            </div>
+
+            <div class="character-info">
+                <h3>MABEOUDI</h3>
+                <div class="role">MYSTERY</div>
+                <p>A mysterious figure from the universe.</p>
+            </div>
+
+        </div>
+
+
+        <div class="character"
+        onclick="showCharacter(
+        'HEDAYATI',
+        'NEW 35',
+        'Hedayati appears during the New 35 storyline and becomes part of the strange events surrounding Pooya and Mehdi.'
+        )">
+
+            <div class="character-image">
+                <div class="avatar">H</div>
+            </div>
+
+            <div class="character-info">
+                <h3>HEDAYATI</h3>
+                <div class="role">NEW 35</div>
+                <p>A mysterious presence within New 35.</p>
+            </div>
+
+        </div>
+
+
+        <div class="character"
+        onclick="showCharacter(
+        'ARMITA NAMAREI',
+        'PEHEN VERSE',
+        'Armita Namarei is one of the characters belonging to the wider Pehen-Verse.'
+        )">
+
+            <div class="character-image">
+                <div class="avatar">AN</div>
+            </div>
+
+            <div class="character-info">
+                <h3>ARMITA NAMAREI</h3>
+                <div class="role">PEHEN VERSE</div>
+                <p>A character from the wider universe.</p>
+            </div>
+
+        </div>
+
+
+        <div class="character"
+        onclick="showCharacter(
+        'MOHAMMAD HASAN ABI',
+        'NEW 35',
+        'Mohammad Hasan Abi is an important antagonist appearing in the New 35 storyline.'
+        )">
+
+            <div class="character-image">
+                <div class="avatar">MA</div>
+            </div>
+
+            <div class="character-info">
+                <h3>MOHAMMAD HASAN ABI</h3>
+                <div class="role">NEW 35</div>
+                <p>An important figure in the New 35 conflict.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PROJECTS -->
+
+<section id="projects">
+
+    <div class="section-title">
+        <div class="tag">FROM THE ARCHIVES</div>
+        <h2>OUR <span>PROJECTS</span></h2>
+    </div>
+
+    <div class="projects">
+
+        <div class="project">
+            <div class="project-number">01</div>
+            <h3>NEW 35</h3>
+            <p>
+                A dark alternate storyline following Pooya Kachal,
+                Mehdi Gavlis and a series of increasingly chaotic events.
+            </p>
+        </div>
+
+        <div class="project">
+            <div class="project-number">02</div>
+       
