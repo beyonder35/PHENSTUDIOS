@@ -3,10 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PEHEN STUDIOS — PEHEN VERSE</title>
+
+<meta name="description" content="PEHEN STUDIOS — Official home of the PEHEN VERSE.">
+<meta name="author" content="Pehen Studios">
+<meta name="copyright" content="© 2026 Pehen Studios. All Rights Reserved.">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="theme-color" content="#03050a">
+
+<title>PEHEN STUDIOS | PEHEN VERSE</title>
 
 <style>
+
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&display=swap');
+
+:root{
+    --yellow:#ffd000;
+    --yellow2:#ffea70;
+    --blue:#009dff;
+    --blue2:#55c5ff;
+    --black:#03050a;
+    --dark:#070b12;
+    --card:#0a1019;
+    --muted:#8793a3;
+    --white:#ffffff;
+}
 
 *{
     margin:0;
@@ -19,349 +39,836 @@ html{
 }
 
 body{
-    background:#03050a;
-    color:#fff;
-    font-family:'Rajdhani',sans-serif;
+    background:var(--black);
+    color:white;
+    font-family:'Rajdhani',Arial,sans-serif;
     overflow-x:hidden;
 }
 
-/* ===== BACKGROUND ===== */
+button,
+input{
+    font-family:inherit;
+}
+
+button{
+    border:0;
+}
+
+::selection{
+    background:var(--yellow);
+    color:#05070b;
+}
+
+
+/* =====================================================
+   LOADER
+===================================================== */
+
+#loader{
+    position:fixed;
+    inset:0;
+    background:#020407;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    z-index:99999;
+
+    opacity:1;
+    visibility:visible;
+
+    transition:
+        opacity .5s ease,
+        visibility .5s ease;
+}
+
+#loader.hidden{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+}
+
+.loader-content{
+    text-align:center;
+}
+
+.loader-logo{
+    font-family:'Orbitron',sans-serif;
+    font-size:clamp(35px,8vw,80px);
+    font-weight:900;
+    letter-spacing:5px;
+
+    text-shadow:
+        0 0 30px rgba(0,157,255,.5);
+}
+
+.loader-logo span{
+    color:var(--yellow);
+}
+
+.loader-line{
+    width:220px;
+    height:2px;
+
+    background:rgba(255,255,255,.08);
+
+    margin:25px auto;
+
+    overflow:hidden;
+}
+
+.loader-progress{
+    height:100%;
+    width:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--blue),
+            var(--yellow)
+        );
+
+    animation:loading 1.2s ease;
+}
+
+.loader-text{
+    color:#657184;
+
+    font-family:'Orbitron',sans-serif;
+
+    font-size:10px;
+
+    letter-spacing:4px;
+}
+
+
+/* =====================================================
+   BACKGROUND
+===================================================== */
 
 body::before{
     content:"";
+
     position:fixed;
     inset:0;
-    background:
-        radial-gradient(circle at 15% 20%,rgba(0,140,255,.18),transparent 28%),
-        radial-gradient(circle at 85% 70%,rgba(255,210,0,.13),transparent 30%),
-        radial-gradient(circle at 50% 100%,rgba(0,90,255,.12),transparent 35%);
+
     pointer-events:none;
-    z-index:-3;
+
+    z-index:-4;
+
+    background:
+        radial-gradient(
+            circle at 10% 15%,
+            rgba(0,157,255,.18),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 90% 70%,
+            rgba(255,208,0,.12),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(0,80,255,.1),
+            transparent 35%
+        );
 }
 
 .grid{
     position:fixed;
     inset:0;
+
+    pointer-events:none;
+
+    z-index:-3;
+
     background-image:
-        linear-gradient(rgba(0,140,255,.035) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(0,140,255,.035) 1px,transparent 1px);
+        linear-gradient(
+            rgba(0,157,255,.035) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(0,157,255,.035) 1px,
+            transparent 1px
+        );
+
     background-size:55px 55px;
-    mask-image:linear-gradient(to bottom,transparent,black 20%,black 80%,transparent);
-    pointer-events:none;
-    z-index:-2;
 }
 
-#particles{
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    z-index:-1;
-}
 
-/* ===== NAVBAR ===== */
+/* =====================================================
+   NAVBAR
+===================================================== */
 
 nav{
     position:fixed;
+
     top:0;
     left:0;
+
     width:100%;
     height:75px;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
+
     padding:0 7%;
-    background:rgba(3,5,10,.72);
-    backdrop-filter:blur(18px);
-    border-bottom:1px solid rgba(0,174,255,.15);
-    z-index:1000;
+
+    background:rgba(3,5,10,.75);
+
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+
+    border-bottom:
+        1px solid rgba(0,157,255,.16);
+
+    z-index:5000;
 }
 
 .logo{
     font-family:'Orbitron',sans-serif;
-    font-size:22px;
+
     font-weight:900;
+
+    font-size:21px;
+
     letter-spacing:3px;
 }
 
 .logo span{
-    color:#ffd000;
+    color:var(--yellow);
 }
 
 .nav-links{
     display:flex;
-    gap:28px;
+
+    gap:25px;
+
     list-style:none;
 }
 
-.nav-links a{
-    color:#aaa;
-    text-decoration:none;
-    font-size:15px;
-    font-weight:600;
-    letter-spacing:1.5px;
-    transition:.3s;
+.nav-links button{
+    background:transparent;
+
+    color:#9aa5b5;
+
     cursor:pointer;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    letter-spacing:1.5px;
+
+    transition:.3s;
 }
 
-.nav-links a:hover{
-    color:#ffd000;
-    text-shadow:0 0 15px rgba(255,208,0,.6);
+.nav-links button:hover{
+    color:var(--yellow);
+
+    text-shadow:
+        0 0 15px rgba(255,208,0,.5);
 }
 
 .menu{
     display:none;
+
+    background:transparent;
+
+    color:var(--yellow);
+
     font-size:28px;
+
     cursor:pointer;
-    color:#ffd000;
 }
 
-/* ===== HERO ===== */
+
+/* =====================================================
+   HERO
+===================================================== */
 
 .hero{
     min-height:100vh;
+
     display:flex;
+
     align-items:center;
     justify-content:center;
+
     text-align:center;
-    position:relative;
-    padding:120px 20px 80px;
+
+    padding:
+        120px 20px 80px;
 }
 
 .hero-content{
-    max-width:1000px;
+    max-width:1050px;
 }
 
-.small-title{
-    color:#ffd000;
+.hero-tag{
+    color:var(--yellow);
+
     font-family:'Orbitron',sans-serif;
+
+    font-size:12px;
+
     letter-spacing:7px;
-    font-size:14px;
+
     margin-bottom:25px;
-    animation:fadeUp 1s ease;
+
+    animation:
+        fadeUp 1s ease both;
 }
 
 .hero h1{
     font-family:'Orbitron',sans-serif;
-    font-size:clamp(55px,11vw,145px);
-    line-height:.9;
+
+    font-size:
+        clamp(55px,12vw,155px);
+
+    line-height:.85;
+
     font-weight:900;
+
     letter-spacing:-5px;
-    background:linear-gradient(110deg,#fff 10%,#55baff 42%,#ffd000 70%,#fff);
+
+    background:
+        linear-gradient(
+            110deg,
+            white 5%,
+            var(--blue2) 40%,
+            var(--yellow) 70%,
+            white
+        );
+
     background-size:300%;
+
     -webkit-background-clip:text;
+    background-clip:text;
+
     color:transparent;
-    animation:gradientMove 5s infinite alternate,fadeUp 1s ease;
+
+    animation:
+        gradientMove 5s infinite alternate,
+        fadeUp 1s ease both;
 }
 
 .hero h2{
-    margin-top:25px;
     font-family:'Orbitron',sans-serif;
-    font-size:clamp(25px,5vw,60px);
-    color:#ffd000;
+
+    color:var(--yellow);
+
+    font-size:
+        clamp(25px,5vw,65px);
+
     letter-spacing:8px;
-    text-shadow:0 0 30px rgba(255,208,0,.25);
+
+    margin-top:25px;
+
+    text-shadow:
+        0 0 30px rgba(255,208,0,.25);
+
+    animation:
+        fadeUp 1s .15s ease both;
 }
 
 .hero p{
-    max-width:650px;
+    max-width:680px;
+
     margin:30px auto;
-    color:#9ca8b8;
+
+    color:#9da9b8;
+
     font-size:19px;
-    line-height:1.6;
+
+    line-height:1.65;
+
+    animation:
+        fadeUp 1s .3s ease both;
 }
 
-.buttons{
+.hero-buttons{
     display:flex;
+
     justify-content:center;
-    gap:15px;
+
     flex-wrap:wrap;
+
+    gap:14px;
+
     margin-top:35px;
+
+    animation:
+        fadeUp 1s .45s ease both;
 }
 
 .btn{
-    border:1px solid #ffd000;
-    padding:15px 28px;
+    padding:14px 26px;
+
     border-radius:6px;
-    text-decoration:none;
-    font-weight:700;
-    letter-spacing:2px;
-    color:#ffd000;
-    transition:.3s;
+
+    border:
+        1px solid var(--yellow);
+
+    background:
+        rgba(255,208,0,.04);
+
+    color:var(--yellow);
+
+    font-weight:800;
+
+    letter-spacing:1.5px;
+
     cursor:pointer;
-    background:rgba(255,208,0,.04);
+
+    transition:.3s;
 }
 
 .btn:hover{
-    background:#ffd000;
+    background:var(--yellow);
+
     color:#05070b;
-    box-shadow:0 0 35px rgba(255,208,0,.35);
+
+    box-shadow:
+        0 0 35px rgba(255,208,0,.3);
+
     transform:translateY(-3px);
 }
 
 .btn.blue{
-    border-color:#009dff;
-    color:#42b9ff;
+    border-color:var(--blue);
+
+    color:var(--blue2);
 }
 
 .btn.blue:hover{
-    background:#009dff;
+    background:var(--blue);
+
     color:white;
-    box-shadow:0 0 35px rgba(0,157,255,.35);
+
+    box-shadow:
+        0 0 35px rgba(0,157,255,.3);
 }
 
-/* ===== SECTIONS ===== */
+
+/* =====================================================
+   SECTIONS
+===================================================== */
 
 section{
     padding:110px 7%;
+
     position:relative;
 }
 
 .section-title{
     text-align:center;
-    margin-bottom:60px;
+
+    margin-bottom:55px;
 }
 
-.section-title .tag{
-    color:#009dff;
+.section-tag{
     font-family:'Orbitron',sans-serif;
+
+    color:var(--blue2);
+
+    font-size:11px;
+
     letter-spacing:4px;
-    font-size:12px;
 }
 
 .section-title h2{
     font-family:'Orbitron',sans-serif;
-    font-size:clamp(32px,5vw,58px);
+
+    font-size:
+        clamp(30px,5vw,58px);
+
     margin-top:10px;
 }
 
 .section-title h2 span{
-    color:#ffd000;
+    color:var(--yellow);
 }
 
-/* ===== VERSE ===== */
+
+/* =====================================================
+   STATS
+===================================================== */
+
+.stats{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    max-width:1000px;
+
+    margin:
+        0 auto 100px;
+
+    border:
+        1px solid rgba(255,255,255,.08);
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+    background:
+        rgba(255,255,255,.015);
+}
+
+.stat{
+    padding:28px;
+
+    text-align:center;
+
+    border-right:
+        1px solid rgba(255,255,255,.07);
+}
+
+.stat:last-child{
+    border-right:0;
+}
+
+.stat strong{
+    display:block;
+
+    font-family:'Orbitron',sans-serif;
+
+    font-size:30px;
+
+    color:var(--yellow);
+}
+
+.stat span{
+    color:#707c8c;
+
+    font-size:12px;
+
+    letter-spacing:2px;
+}
+
+
+/* =====================================================
+   VERSE
+===================================================== */
 
 .verse{
     display:grid;
-    grid-template-columns:1fr 1fr;
+
+    grid-template-columns:
+        1fr 1fr;
+
     gap:60px;
+
     align-items:center;
 }
 
 .verse-box{
-    border:1px solid rgba(0,157,255,.25);
-    background:linear-gradient(145deg,rgba(0,157,255,.07),rgba(255,208,0,.025));
     padding:45px;
-    border-radius:18px;
-    box-shadow:0 0 70px rgba(0,100,255,.06);
+
+    border-radius:20px;
+
+    border:
+        1px solid rgba(0,157,255,.2);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(0,157,255,.07),
+            rgba(255,208,0,.025)
+        );
+
+    box-shadow:
+        0 0 70px rgba(0,100,255,.05);
 }
 
 .verse-box h3{
+    color:var(--yellow);
+
     font-family:'Orbitron',sans-serif;
-    color:#ffd000;
-    font-size:28px;
+
+    font-size:27px;
+
     margin-bottom:20px;
 }
 
 .verse-box p{
-    color:#aeb8c5;
-    line-height:1.8;
-    font-size:18px;
+    color:#aab5c3;
+
+    line-height:1.85;
+
+    font-size:17px;
 }
 
-.symbol{
-    height:380px;
+.verse-symbol{
+    height:370px;
+
     display:flex;
-    justify-content:center;
+
     align-items:center;
+    justify-content:center;
+
     position:relative;
 }
 
-.symbol-ring{
+.ring{
     width:280px;
     height:280px;
-    border:1px solid #009dff;
+
+    border:
+        1px solid var(--blue);
+
     border-radius:50%;
-    box-shadow:0 0 40px rgba(0,157,255,.18),inset 0 0 40px rgba(0,157,255,.08);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    animation:spin 20s linear infinite;
+
+    box-shadow:
+        0 0 50px rgba(0,157,255,.16),
+        inset 0 0 40px rgba(0,157,255,.08);
+
+    animation:
+        spin 20s linear infinite;
 }
 
-.symbol-ring::before{
+.ring::before{
     content:"";
-    width:190px;
-    height:190px;
-    border:2px solid #ffd000;
-    border-radius:50%;
-    box-shadow:0 0 30px rgba(255,208,0,.18);
-}
 
-.symbol-text{
     position:absolute;
-    font-family:'Orbitron',sans-serif;
-    font-size:38px;
-    font-weight:900;
-    color:#fff;
-    text-shadow:0 0 25px #009dff;
+
+    width:185px;
+    height:185px;
+
+    margin:47px;
+
+    border:
+        2px solid var(--yellow);
+
+    border-radius:50%;
 }
 
-/* ===== CHARACTERS ===== */
+.ring-text{
+    position:absolute;
+
+    font-family:'Orbitron',sans-serif;
+
+    font-size:40px;
+
+    font-weight:900;
+
+    text-shadow:
+        0 0 25px var(--blue);
+}
+
+
+/* =====================================================
+   CHARACTER DATABASE
+===================================================== */
+
+.database-tools{
+    max-width:1000px;
+
+    margin:
+        0 auto 35px;
+
+    display:flex;
+
+    gap:12px;
+
+    flex-wrap:wrap;
+}
+
+.search-box{
+    flex:1;
+
+    min-width:230px;
+}
+
+.search-box input{
+    width:100%;
+
+    padding:15px 18px;
+
+    border-radius:8px;
+
+    border:
+        1px solid rgba(0,157,255,.2);
+
+    background:
+        rgba(255,255,255,.035);
+
+    color:white;
+
+    outline:none;
+
+    font-size:16px;
+}
+
+.search-box input:focus{
+    border-color:var(--blue);
+
+    box-shadow:
+        0 0 20px rgba(0,157,255,.1);
+}
+
+.filters{
+    display:flex;
+
+    gap:8px;
+
+    flex-wrap:wrap;
+}
+
+.filter{
+    padding:11px 16px;
+
+    border-radius:7px;
+
+    border:
+        1px solid rgba(255,255,255,.1);
+
+    background:
+        rgba(255,255,255,.025);
+
+    color:#8d99a9;
+
+    cursor:pointer;
+
+    font-weight:700;
+
+    transition:.3s;
+}
+
+.filter:hover,
+.filter.active{
+    border-color:var(--yellow);
+
+    color:var(--yellow);
+
+    background:
+        rgba(255,208,0,.06);
+}
+
+
+/* =====================================================
+   CHARACTERS
+===================================================== */
 
 .characters{
+    max-width:1200px;
+
+    margin:auto;
+
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(245px,1fr));
+
     gap:22px;
 }
 
 .character{
-    min-height:330px;
-    border:1px solid rgba(255,255,255,.1);
+    min-height:335px;
+
     border-radius:16px;
+
     overflow:hidden;
-    position:relative;
-    background:linear-gradient(150deg,#080d15,#05070c);
-    transition:.4s;
+
+    border:
+        1px solid rgba(255,255,255,.08);
+
+    background:
+        linear-gradient(
+            150deg,
+            #080d15,
+            #05070c
+        );
+
     cursor:pointer;
+
+    transition:.35s;
+
+    position:relative;
 }
 
 .character:hover{
-    transform:translateY(-10px);
-    border-color:#009dff;
-    box-shadow:0 20px 60px rgba(0,120,255,.15);
+    transform:translateY(-9px);
+
+    border-color:var(--blue);
+
+    box-shadow:
+        0 20px 60px rgba(0,120,255,.13);
+}
+
+.character.hidden{
+    display:none;
 }
 
 .character-image{
-    height:190px;
-    background:
-        radial-gradient(circle at 50% 35%,rgba(0,157,255,.35),transparent 25%),
-        linear-gradient(145deg,#071426,#10151d);
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    height:195px;
+
     position:relative;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    overflow:hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(0,157,255,.3),
+            transparent 35%
+        ),
+        linear-gradient(
+            145deg,
+            #071426,
+            #0d121a
+        );
 }
 
-.character-image::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:linear-gradient(transparent 55%,#080d15);
+.character-image img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+    transition:.4s;
 }
 
-.avatar{
+.character:hover .character-image img{
+    transform:scale(1.06);
+}
+
+.placeholder-avatar{
     width:105px;
     height:105px;
+
     border-radius:50%;
-    border:2px solid #ffd000;
+
+    border:
+        2px solid var(--yellow);
+
     display:flex;
+
     align-items:center;
     justify-content:center;
+
+    color:var(--yellow);
+
     font-family:'Orbitron',sans-serif;
+
     font-size:27px;
+
     font-weight:900;
-    color:#ffd000;
-    box-shadow:0 0 35px rgba(255,208,0,.2);
+
+    box-shadow:
+        0 0 40px rgba(255,208,0,.2);
 }
 
 .character-info{
@@ -370,175 +877,268 @@ section{
 
 .character-info h3{
     font-family:'Orbitron',sans-serif;
-    font-size:19px;
+
+    font-size:17px;
 }
 
-.character-info .role{
-    color:#009dff;
-    font-size:13px;
+.character-role{
+    color:var(--blue2);
+
+    font-size:12px;
+
     letter-spacing:2px;
-    margin:6px 0;
+
+    margin:7px 0;
 }
 
 .character-info p{
-    color:#8894a4;
+    color:#8793a3;
+
     line-height:1.5;
+
+    font-size:15px;
 }
 
-/* ===== PROJECTS ===== */
+
+/* =====================================================
+   PROJECTS
+===================================================== */
 
 .projects{
+    max-width:1150px;
+
+    margin:auto;
+
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(290px,1fr));
+
     gap:25px;
 }
 
 .project{
-    min-height:280px;
-    border-radius:18px;
+    min-height:285px;
+
     padding:35px;
+
+    border-radius:18px;
+
+    border:
+        1px solid rgba(255,208,0,.14);
+
+    background:
+        linear-gradient(
+            140deg,
+            rgba(255,208,0,.06),
+            rgba(0,157,255,.04)
+        );
+
     position:relative;
+
     overflow:hidden;
-    border:1px solid rgba(255,208,0,.18);
-    background:linear-gradient(140deg,rgba(255,208,0,.07),rgba(0,157,255,.04));
+
     transition:.35s;
 }
 
 .project:hover{
     transform:translateY(-7px);
-    border-color:#ffd000;
-    box-shadow:0 20px 50px rgba(255,208,0,.1);
+
+    border-color:var(--yellow);
+
+    box-shadow:
+        0 20px 50px rgba(255,208,0,.08);
 }
 
 .project-number{
     position:absolute;
+
     right:20px;
-    top:15px;
+    top:10px;
+
     font-family:'Orbitron',sans-serif;
-    font-size:65px;
-    color:rgba(255,255,255,.035);
+
+    font-size:70px;
+
     font-weight:900;
+
+    color:rgba(255,255,255,.035);
 }
 
 .project h3{
-    color:#ffd000;
     font-family:'Orbitron',sans-serif;
-    font-size:28px;
+
+    color:var(--yellow);
+
+    font-size:27px;
+
     margin-bottom:18px;
 }
 
 .project p{
-    color:#a4afbd;
-    line-height:1.7;
+    color:#9ca8b6;
+
+    line-height:1.75;
 }
 
-/* ===== LORE ===== */
+
+/* =====================================================
+   LORE
+===================================================== */
 
 .lore-list{
-    max-width:900px;
+    max-width:950px;
+
     margin:auto;
 }
 
 .lore-item{
     display:grid;
-    grid-template-columns:100px 1fr;
+
+    grid-template-columns:110px 1fr;
+
     gap:25px;
+
     margin-bottom:25px;
 }
 
 .lore-date{
-    color:#ffd000;
+    color:var(--yellow);
+
     font-family:'Orbitron',sans-serif;
-    font-size:14px;
+
+    font-size:12px;
+
     padding-top:20px;
 }
 
 .lore-content{
-    border-left:2px solid #009dff;
-    padding:18px 25px;
-    background:rgba(0,157,255,.035);
-    border-radius:0 12px 12px 0;
+    padding:20px 25px;
+
+    border-left:
+        2px solid var(--blue);
+
+    border-radius:
+        0 12px 12px 0;
+
+    background:
+        rgba(0,157,255,.035);
 }
 
 .lore-content h3{
     font-family:'Orbitron',sans-serif;
-    margin-bottom:8px;
+
+    margin-bottom:9px;
 }
 
 .lore-content p{
     color:#8995a5;
-    line-height:1.6;
+
+    line-height:1.65;
 }
 
-/* ===== DEBATE ===== */
 
-.debate{
-    max-width:850px;
+/* =====================================================
+   ARCHIVES
+===================================================== */
+
+.archive-grid{
+    max-width:1150px;
+
     margin:auto;
-    text-align:center;
-    padding:60px 30px;
-    border:1px solid rgba(0,157,255,.25);
-    border-radius:20px;
-    background:radial-gradient(circle at center,rgba(0,157,255,.08),transparent 65%);
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(280px,1fr));
+
+    gap:22px;
 }
 
-.debate h2{
-    font-family:'Orbitron',sans-serif;
-    font-size:35px;
+.archive-card{
+    padding:30px;
+
+    border-radius:16px;
+
+    border:
+        1px solid rgba(0,157,255,.15);
+
+    background:
+        rgba(0,157,255,.025);
+
+    transition:.3s;
+}
+
+.archive-card:hover{
+    border-color:var(--blue);
+
+    transform:translateY(-6px);
+
+    box-shadow:
+        0 20px 45px rgba(0,157,255,.08);
+}
+
+.archive-icon{
+    width:50px;
+    height:50px;
+
+    border-radius:12px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    background:
+        rgba(255,208,0,.08);
+
+    border:
+        1px solid rgba(255,208,0,.2);
+
+    color:var(--yellow);
+
+    font-size:22px;
+
     margin-bottom:20px;
 }
 
-.debate h2 span{
-    color:#ffd000;
-}
-
-.debate p{
-    color:#9ba7b6;
-    line-height:1.7;
-    font-size:18px;
-}
-
-/* ===== FOOTER ===== */
-
-footer{
-    padding:60px 7% 35px;
-    border-top:1px solid rgba(255,255,255,.08);
-    text-align:center;
-}
-
-.footer-logo{
+.archive-card h3{
     font-family:'Orbitron',sans-serif;
-    font-size:30px;
-    font-weight:900;
+
+    margin-bottom:10px;
 }
 
-.footer-logo span{
-    color:#ffd000;
+.archive-card p{
+    color:#8995a5;
+
+    line-height:1.65;
 }
 
-footer p{
-    color:#626d7c;
-    margin-top:15px;
-}
 
-.creator{
-    margin-top:25px;
-    color:#009dff;
-    letter-spacing:2px;
-}
-
-/* ===== MODAL ===== */
+/* =====================================================
+   MODAL
+===================================================== */
 
 .modal{
     position:fixed;
+
     inset:0;
-    background:rgba(0,0,0,.8);
-    backdrop-filter:blur(15px);
+
     display:none;
+
     align-items:center;
     justify-content:center;
-    z-index:2000;
+
     padding:20px;
+
+    background:
+        rgba(0,0,0,.84);
+
+    backdrop-filter:blur(15px);
+
+    -webkit-backdrop-filter:blur(15px);
+
+    z-index:10000;
 }
 
 .modal.active{
@@ -546,435 +1146,287 @@ footer p{
 }
 
 .modal-box{
-    max-width:650px;
     width:100%;
-    background:#080d15;
-    border:1px solid #009dff;
-    border-radius:20px;
+
+    max-width:720px;
+
+    max-height:
+        calc(100vh - 40px);
+
+    overflow:auto;
+
     padding:40px;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #09101a,
+            #05070c
+        );
+
+    border:
+        1px solid var(--blue);
+
+    box-shadow:
+        0 0 90px rgba(0,157,255,.16);
+
     position:relative;
-    box-shadow:0 0 80px rgba(0,157,255,.18);
+
+    animation:
+        modalIn .25s ease both;
 }
 
-.close{
-    position:absolute;
-    right:20px;
-    top:15px;
-    font-size:28px;
-    color:#ffd000;
-    cursor:pointer;
+.modal-image{
+    height:220px;
+
+    border-radius:14px;
+
+    margin-bottom:25px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    overflow:hidden;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0,157,255,.3),
+            transparent 45%
+        ),
+        #070c14;
+
+    border:
+        1px solid rgba(255,255,255,.07);
+}
+
+.modal-image img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    border-radius:14px;
 }
 
 .modal-box h2{
     font-family:'Orbitron',sans-serif;
-    color:#ffd000;
-    margin-bottom:8px;
+
+    color:var(--yellow);
+
+    font-size:28px;
+
+    padding-right:40px;
 }
 
 .modal-role{
-    color:#009dff;
-    letter-spacing:2px;
-    margin-bottom:20px;
+    color:var(--blue2);
+
+    letter-spacing:3px;
+
+    font-size:12px;
+
+    margin:8px 0 20px;
 }
 
 .modal-box p{
-    color:#a8b2c0;
+    color:#aab5c3;
+
     line-height:1.8;
+
     font-size:17px;
 }
 
-/* ===== ANIMATIONS ===== */
+.modal-close{
+    position:absolute;
 
-@keyframes gradientMove{
-    0%{background-position:0%}
-    100%{background-position:100%}
+    right:18px;
+    top:18px;
+
+    width:40px;
+    height:40px;
+
+    border-radius:50%;
+
+    background:
+        rgba(255,208,0,.05);
+
+    color:var(--yellow);
+
+    font-size:27px;
+
+    cursor:pointer;
+
+    z-index:2;
 }
 
-@keyframes fadeUp{
-    from{opacity:0;transform:translateY(30px)}
-    to{opacity:1;transform:translateY(0)}
+.modal-close:hover{
+    background:
+        rgba(255,208,0,.15);
 }
 
-@keyframes spin{
-    to{transform:rotate(360deg)}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer{
+    padding:
+        75px 7% 30px;
+
+    text-align:center;
+
+    border-top:
+        1px solid rgba(255,255,255,.07);
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0,157,255,.02),
+            rgba(255,208,0,.025)
+        );
 }
 
-@keyframes float{
-    0%,100%{transform:translateY(0)}
-    50%{transform:translateY(-12px)}
+.footer-logo{
+    font-family:'Orbitron',sans-serif;
+
+    font-size:32px;
+
+    font-weight:900;
+
+    letter-spacing:3px;
 }
 
-/* ===== MOBILE ===== */
-
-@media(max-width:800px){
-
-    nav{
-        padding:0 5%;
-    }
-
-    .nav-links{
-        position:absolute;
-        top:75px;
-        left:0;
-        width:100%;
-        flex-direction:column;
-        align-items:center;
-        gap:0;
-        background:rgba(3,5,10,.96);
-        backdrop-filter:blur(20px);
-        max-height:0;
-        overflow:hidden;
-        transition:.4s;
-    }
-
-    .nav-links.open{
-        max-height:400px;
-    }
-
-    .nav-links li{
-        padding:18px;
-    }
-
-    .menu{
-        display:block;
-    }
-
-    .verse{
-        grid-template-columns:1fr;
-    }
-
-    .symbol{
-        height:280px;
-    }
-
-    .symbol-ring{
-        width:210px;
-        height:210px;
-    }
-
-    .symbol-ring::before{
-        width:140px;
-        height:140px;
-    }
-
-    .lore-item{
-        grid-template-columns:1fr;
-        gap:5px;
-    }
-
-    .lore-date{
-        padding-left:20px;
-    }
-
-    section{
-        padding:80px 5%;
-    }
+.footer-logo span{
+    color:var(--yellow);
 }
-</style>
-</head>
 
-<body>
+.footer-description{
+    color:#687486;
 
-<div class="grid"></div>
-<canvas id="particles"></canvas>
+    margin-top:12px;
 
-<!-- NAVIGATION -->
+    font-size:15px;
+}
 
-<nav>
-    <div class="logo">PEHEN <span>STUDIOS</span></div>
+.footer-credit{
+    margin-top:28px;
 
-    <ul class="nav-links" id="navLinks">
-        <li><a onclick="go('home')">HOME</a></li>
-        <li><a onclick="go('verse')">VERSE</a></li>
-        <li><a onclick="go('characters')">CHARACTERS</a></li>
-        <li><a onclick="go('projects')">PROJECTS</a></li>
-        <li><a onclick="go('lore')">LORE</a></li>
-        <li><a onclick="go('debates')">DEBATES</a></li>
-    </ul>
+    padding-top:25px;
 
-    <div class="menu" onclick="toggleMenu()">☰</div>
-</nav>
+    border-top:
+        1px solid rgba(255,255,255,.06);
 
+    color:#8a95a5;
 
-<!-- HERO -->
+    font-size:13px;
 
-<section class="hero" id="home">
+    letter-spacing:1px;
+}
 
-    <div class="hero-content">
+.footer-credit strong{
+    color:var(--yellow);
+}
 
-        <div class="small-title">WELCOME TO THE UNIVERSE</div>
+.copyright{
+    margin-top:10px;
 
-        <h1>PEHEN</h1>
+    color:#566171;
 
-        <h2>VERSE</h2>
+    font-size:11px;
 
-        <p>
-            A universe built from impossible characters,
-            strange worlds, legendary stories and endless possibilities.
-        </p>
+    letter-spacing:2px;
+}
 
-        <div class="buttons">
-            <a class="btn" onclick="go('characters')">EXPLORE CHARACTERS</a>
-            <a class="btn blue" onclick="go('verse')">ENTER THE VERSE</a>
-        </div>
+.footer-version{
+    margin-top:18px;
 
-    </div>
+    color:var(--blue2);
 
-</section>
+    font-size:10px;
 
+    letter-spacing:4px;
+}
 
-<!-- VERSE -->
 
-<section id="verse">
+/* =====================================================
+   SECRET
+===================================================== */
 
-    <div class="section-title">
-        <div class="tag">THE WORLD BEYOND</div>
-        <h2>PEHEN <span>VERSE</span></h2>
-    </div>
+.easter{
+    position:fixed;
 
-    <div class="verse">
+    right:20px;
+    bottom:20px;
 
-        <div class="verse-box">
+    width:45px;
+    height:45px;
 
-            <h3>WHAT IS PEHEN VERSE?</h3>
+    border-radius:50%;
 
-            <p>
-                Pehen-Verse is a fictional universe created by Pehen Studios.
-                A place where heroes, villains, strange beings and completely
-                different realities can exist together.
-                <br><br>
-                Every character has a story.
-                Every world has its own rules.
-                And every story can change the universe forever.
-            </p>
+    background:
+        rgba(0,157,255,.08);
 
-        </div>
+    border:
+        1px solid rgba(0,157,255,.25);
 
-        <div class="symbol">
-            <div class="symbol-ring"></div>
-            <div class="symbol-text">P</div>
-        </div>
+    color:var(--blue);
 
-    </div>
+    cursor:pointer;
 
-</section>
+    opacity:.45;
 
+    transition:.3s;
 
-<!-- CHARACTERS -->
+    z-index:3000;
+}
 
-<section id="characters">
+.easter:hover{
+    opacity:1;
 
-    <div class="section-title">
-        <div class="tag">MEET THE LEGENDS</div>
-        <h2>CHARACTER <span>DATABASE</span></h2>
-    </div>
+    box-shadow:
+        0 0 25px rgba(0,157,255,.3);
+}
 
-    <div class="characters">
+.secret-message{
+    position:fixed;
 
-        <div class="character"
-        onclick="showCharacter(
-        'PARSA PEHEN PRIME',
-        'THE PRIME',
-        'One of the central figures of the Pehen-Verse. Parsa Pehen Prime represents an extremely powerful version of Parsa and stands at the heart of the main universe.'
-        )">
-
-            <div class="character-image">
-                <div class="avatar">PP</div>
-            </div>
-
-            <div class="character-info">
-                <h3>PARSA PEHEN PRIME</h3>
-                <div class="role">THE PRIME</div>
-                <p>A legendary figure at the center of the Pehen-Verse.</p>
-            </div>
-
-        </div>
-
+    inset:0;
 
-        <div class="character"
-        onclick="showCharacter(
-        'POOYA KACHAL PRIME',
-        'THE HERO',
-        'Pooya Kachal Prime is one of the most important heroic figures of the Pehen-Verse and a major part of its mythology.'
-        )">
-
-            <div class="character-image">
-                <div class="avatar">PK</div>
-            </div>
-
-            <div class="character-info">
-                <h3>POOYA KACHAL PRIME</h3>
-                <div class="role">THE HERO</div>
-                <p>A legendary hero with his own place in the universe.</p>
-            </div>
-
-        </div>
-
+    display:none;
 
-        <div class="character"
-        onclick="showCharacter(
-        'PARSA KILLER',
-        'THE KILLER',
-        'A darker incarnation of Parsa. Parsa Killer represents a dangerous and unpredictable side of the Pehen mythos.'
-        )">
-
-            <div class="character-image">
-                <div class="avatar">PK</div>
-            </div>
-
-            <div class="character-info">
-                <h3>PARSA KILLER</h3>
-                <div class="role">THE KILLER</div>
-                <p>A dark and unpredictable version of Parsa.</p>
-            </div>
-
-        </div>
-
+    align-items:center;
+    justify-content:center;
 
-        <div class="character"
-        onclick="showCharacter(
-        'POOYA KACHAL',
-        'NEW 35',
-        'Pooya Kachal is a young hero appearing in the New 35 storyline. He is known for his humorous personality and distinctive yellow and blue costume.'
-        )">
-
-            <div class="character-image">
-                <div class="avatar">PK</div>
-            </div>
-
-            <div class="character-info">
-                <h3>POOYA KACHAL</h3>
-                <div class="role">NEW 35</div>
-                <p>The hero of the New 35 storyline.</p>
-            </div>
-
-        </div>
-
+    background:
+        rgba(0,0,0,.92);
 
-        <div class="character"
-        onclick="showCharacter(
-        'MEHDI GAVLIS',
-        'NEW 35',
-        'Mehdi Gavlis is one of the important characters surrounding Pooya Kachal during the events of New 35.'
-        )">
+    z-index:20000;
 
-            <div class="character-image">
-                <div class="avatar">MG</div>
-            </div>
+    text-align:center;
 
-            <div class="character-info">
-                <h3>MEHDI GAVLIS</h3>
-                <div class="role">NEW 35</div>
-                <p>A key character in Pooya's story.</p>
-            </div>
+    padding:30px;
+}
 
-        </div>
+.secret-message.active{
+    display:flex;
+}
 
+.secret-message h2{
+    font-family:'Orbitron',sans-serif;
 
-        <div class="character"
-        onclick="showCharacter(
-        'MABEOUDI',
-        'MYSTERY',
-        'Mabeoudi is one of the strange and memorable figures of the Pehen-Verse.'
-        )">
+    font-size:
+        clamp(35px,8vw,80px);
 
-            <div class="character-image">
-                <div class="avatar">M</div>
-            </div>
+    color:var(--yellow);
 
-            <div class="character-info">
-                <h3>MABEOUDI</h3>
-                <div class="role">MYSTERY</div>
-                <p>A mysterious figure from the universe.</p>
-            </div>
+    text-shadow:
+        0 0 30px rgba(255,208,0,.4);
+}
 
-        </div>
-
-
-        <div class="character"
-        onclick="showCharacter(
-        'HEDAYATI',
-        'NEW 35',
-        'Hedayati appears during the New 35 storyline and becomes part of the strange events surrounding Pooya and Mehdi.'
-        )">
-
-            <div class="character-image">
-                <div class="avatar">H</div>
-            </div>
-
-            <div class="character-info">
-                <h3>HEDAYATI</h3>
-                <div class="role">NEW 35</div>
-                <p>A mysterious presence within New 35.</p>
-            </div>
-
-        </div>
-
-
-        <div class="character"
-        onclick="showCharacter(
-        'ARMITA NAMAREI',
-        'PEHEN VERSE',
-        'Armita Namarei is one of the characters belonging to the wider Pehen-Verse.'
-        )">
-
-            <div class="character-image">
-                <div class="avatar">AN</div>
-            </div>
-
-            <div class="character-info">
-                <h3>ARMITA NAMAREI</h3>
-                <div class="role">PEHEN VERSE</div>
-                <p>A character from the wider universe.</p>
-            </div>
-
-        </div>
-
-
-        <div class="character"
-        onclick="showCharacter(
-        'MOHAMMAD HASAN ABI',
-        'NEW 35',
-        'Mohammad Hasan Abi is an important antagonist appearing in the New 35 storyline.'
-        )">
-
-            <div class="character-image">
-                <div class="avatar">MA</div>
-            </div>
-
-            <div class="character-info">
-                <h3>MOHAMMAD HASAN ABI</h3>
-                <div class="role">NEW 35</div>
-                <p>An important figure in the New 35 conflict.</p>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- PROJECTS -->
-
-<section id="projects">
-
-    <div class="section-title">
-        <div class="tag">FROM THE ARCHIVES</div>
-        <h2>OUR <span>PROJECTS</span></h2>
-    </div>
-
-    <div class="projects">
-
-        <div class="project">
-            <div class="project-number">01</div>
-            <h3>NEW 35</h3>
-            <p>
-                A dark alternate storyline following Pooya Kachal,
-                Mehdi Gavlis and a series of increasingly chaotic events.
-            </p>
-        </div>
-
-        <div class="project">
-            <div class="project-number">02</div>
-       
+.secret-message p{
+    color:#8793a3;
